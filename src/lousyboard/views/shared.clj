@@ -1,5 +1,6 @@
 (ns lousyboard.views.shared
-  (:require [hiccup.core :refer [html]]))
+  (:require [hiccup.core :refer :all]
+            [hiccup.page :refer :all]))
 
 (defmacro defview
   "A shorthand for defining views that will be placed within a layout"
@@ -11,8 +12,7 @@
   "Defines the default layout for views in the application"
   [ctx content]
   (html [:head
-         [:title "lousyboard"]]
+         [:title "lousyboard"]
+         (include-css "/dist/application.css")]
         [:body
-         [:h1 "welcome to lousyboardz"]
-         [:hr]
-         [:div content]]))
+         [:div {:class "container"} content]]))

@@ -1,0 +1,38 @@
+$color-white: #fff
+$color-dark: #515151
+$color-blue: #00B4FF
+$color-light: #EEEEEE
+$color-purple: #D16D9E
+
+@mixin font-sans
+  font-family: Helvetica, Arial, sans-serif
+  font-weight: 300
+  -webkit-font-smoothing: antialiased
+
+body
+  @include font-sans
+  background-color: $color-white
+  color: $color-dark
+
+.container
+  width: calc(100% - 40px)
+  margin: 20px auto
+
+input
+  @include font-sans
+
+  &:focus
+    border-color: $color-blue
+
+////
+// Post box
+//
+.post-input
+  display: block
+  width: 100%
+  background: $color-white
+  border: 3px solid $color-light
+  font-size: 24px
+  padding: 10px
+  outline: 0px
+
