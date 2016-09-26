@@ -2,6 +2,7 @@
   (:require [compojure.core :refer :all]
             [compojure.route :as route]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
+            [lousyboard.db]
             [lousyboard.controllers.posts :as posts]))
 
 (defroutes app-routes

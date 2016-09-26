@@ -8,6 +8,7 @@
                  [korma "0.4.3"]
                  [org.postgresql/postgresql "9.4.1211"]
                  [ragtime "0.6.0"]
+                 [clj-time "0.12.0"]
                  [hiccup "1.0.5"]]
   :plugins [[lein-ring "0.9.7"]]
   :ring {:handler lousyboard.handler/app
