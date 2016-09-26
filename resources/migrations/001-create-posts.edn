@@ -1,0 +1,7 @@
+{:up ["CREATE TABLE posts (
+        id SERIAL,
+        created_at TIMESTAMP,
+        updated_at TIMESTAMP,
+        content TEXT
+      )"]
+ :down ["DROP TABLE posts"]}

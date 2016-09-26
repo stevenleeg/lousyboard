@@ -1,19 +1,16 @@
 # lousyboard
-
-FIXME
-
-## Prerequisites
-
-You will need [Leiningen][] 2.0.0 or above installed.
-
-[leiningen]: https://github.com/technomancy/leiningen
+A lousy message board.
 
 ## Running
+You'll want to start off by running migrations. This can be done by opening a
+repl (with `lein repl`) and running the following:
 
-To start a web server for the application, run:
+    (require '[ragtime.repl :as repl])
+    (require '[lousyboard.db :refer [migration-config])
 
-    lein ring server
+    (repl/migrate migration-config)
 
-## License
+Once the migrations have been applied you can start the web server with:
 
-Copyright © 2016 FIXME
+    lein ring server-headless
+

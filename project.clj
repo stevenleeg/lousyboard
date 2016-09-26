@@ -5,6 +5,9 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [compojure "1.5.1"]
                  [ring/ring-defaults "0.2.1"]
+                 [korma "0.4.3"]
+                 [org.postgresql/postgresql "9.4.1211"]
+                 [ragtime "0.6.0"]
                  [hiccup "1.0.5"]]
   :plugins [[lein-ring "0.9.7"]]
   :ring {:handler lousyboard.handler/app
