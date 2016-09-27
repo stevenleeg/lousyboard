@@ -28,3 +28,5 @@
   [post]
   (insert posts (values post)))
 
+(def base-posts (-> (select* "posts")
+                    (order :id :DESC)))
