@@ -7,7 +7,11 @@
 
 (defn render-post [post]
   [:div {:class "post"} 
-   [:div {:class "post-meta"} (str "#" (:id post))]
+   [:div {:class "post-meta"} 
+    [:div {:class "left"} 
+     (:created_at post)]
+    [:div {:class "right"} 
+     (str "#" (:id post))]]
    [:div {:class "post-content"} (:content post)]])
 
 (defview index layout

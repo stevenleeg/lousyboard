@@ -13,6 +13,7 @@ body
   @include font-sans
   background-color: $color-white
   color: $color-dark
+  font-size: 16px
 
 .container
   width: calc(100% - 40px)
@@ -49,5 +50,14 @@ input
   padding: 10px
 
 .post-meta
-  float: right
-  padding: 10px
+  padding: 5px 10px
+  border-bottom: 1px solid $color-light
+  display: flex
+  font-size: 14px
+
+  .left
+    flex: 1
+
+  .right
+    text-align: right
+    
