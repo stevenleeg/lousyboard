@@ -2,7 +2,8 @@
   (:require [hiccup.core :refer [html]]
             [hiccup.form :refer :all]
             [ring.util.anti-forgery :refer [anti-forgery-field]]
-            [lousyboard.views.shared :refer :all]))
+            [lousyboard.views.shared :refer [layout]]
+            [lousyboard.macros :refer [defview]]))
 
 (defn render-post [post]
   [:div {:class "post"} 

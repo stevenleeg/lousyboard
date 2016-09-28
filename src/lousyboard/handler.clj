@@ -6,7 +6,7 @@
             [lousyboard.controllers.posts :as posts]))
 
 (defroutes app-routes
-  (GET "/" [:as req] (posts/index req))
+  (GET "/" [:as req] (posts/index-controller req))
   (POST "/posts/new" [:as req] (posts/create req))
   (route/not-found "Not Found"))
 

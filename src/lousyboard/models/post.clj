@@ -11,6 +11,9 @@
 
 (defentity posts)
 
+;
+; Post Creation
+;
 (defn create-post
   "creates a post, returning either a directly insertable map or a list of
    validation errors"
@@ -28,5 +31,8 @@
   [post]
   (insert posts (values post)))
 
+;
+; Post querying
+;
 (def base-posts (-> (select* "posts")
                     (order :id :DESC)))
