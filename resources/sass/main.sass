@@ -1,7 +1,10 @@
+$color-light: darken(#fff, 2%)
+$color-sirjtaa: #7c9278
 $color-white: #fff
 $color-dark: #515151
 $color-blue: #00B4FF
-$color-light: #EEEEEE
+$color-light-gray: #EEEEEE
+$color-border: darken($color-light-gray, 10%)
 $color-purple: #D16D9E
 
 @mixin font-sans
@@ -11,7 +14,7 @@ $color-purple: #D16D9E
 
 body
   @include font-sans
-  background-color: $color-white
+  background-color: $color-sirjtaa
   color: $color-dark
   font-size: 16px
 
@@ -31,8 +34,8 @@ input
 .post-input
   display: block
   width: 100%
-  background: $color-white
-  border: 3px solid $color-light
+  background-color: $color-light-gray
+  border: 3px solid $color-border
   font-size: 24px
   padding: 10px
   outline: 0px
@@ -41,7 +44,8 @@ input
 // Posts
 //
 .post
-  border: 3px solid $color-light
+  border: 3px solid $color-border
+  background-color: $color-light-gray
   margin-bottom: 10px
   clear: both
 
@@ -51,7 +55,7 @@ input
 
 .post-meta
   padding: 5px 10px
-  border-bottom: 1px solid $color-light
+  border-bottom: 1px solid $color-border
   display: flex
   font-size: 14px
 

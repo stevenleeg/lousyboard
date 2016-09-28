@@ -2,14 +2,15 @@
   (:require [hiccup.core :refer [html]]
             [hiccup.form :refer :all]
             [ring.util.anti-forgery :refer [anti-forgery-field]]
+            [clj-time.coerce :as c]
             [lousyboard.views.shared :refer [layout]]
-            [lousyboard.macros :refer [defview]]))
+            [lousyboard.utils :refer [defview fuzzy-time]]))
 
 (defn render-post [post]
   [:div {:class "post"} 
    [:div {:class "post-meta"} 
     [:div {:class "left"} 
-     (:created_at post)]
+     (fuzzy-time (c/from-sql-time (:created_at post)))]
     [:div {:class "right"} 
      (str "#" (:id post))]]
    [:div {:class "post-content"} (:content post)]])
