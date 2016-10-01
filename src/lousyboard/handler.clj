@@ -8,6 +8,7 @@
 (defroutes app-routes
   (GET "/" [:as req] (posts/index req))
   (POST "/posts/new" [:as req] (posts/create req))
+  (GET "/posts/:id{[0-9]+}" [:as req] (posts/show req))
   (route/not-found "Not Found"))
 
 (def app
