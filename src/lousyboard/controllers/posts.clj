@@ -5,7 +5,10 @@
             [lousyboard.models.post :refer :all]))
 
 (defn index [req]
-  (views/index {:posts (select base-posts)}))
+  (let [posts (select base-posts)]
+    (if (= 0 (count base-posts))
+      "Nothing here"
+      (views/index {:posts posts}))))
 
 (defn show [{params :params :as req}]
   (let [post (-> base-posts 

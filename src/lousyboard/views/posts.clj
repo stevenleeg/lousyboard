@@ -7,7 +7,7 @@
             [lousyboard.views.shared :refer [layout]]
             [lousyboard.utils :refer [defview fuzzy-time]]))
 
-(defn render-post [{post :post}]
+(defn render-post [post]
   [:div {:class "post"} 
    [:div {:class "post-meta"} 
     (link-to {:class "left"} (str "/posts/" (:id post))
@@ -24,10 +24,10 @@
      (anti-forgery-field)
      (text-field {:placeholder "just say it, already"
                   :class "post-input"} :content)]]
-   (map render-post {:posts (:posts ctx)})])
+   (map render-post (:posts ctx))])
 
 (defview show layout
   [ctx]
-  [:div
-   [:div "wat"]
-   (render-post (merge ctx :class "post-single"))])
+  [:div {:class "single-post"}
+   [:a {:href "/" :class "btn"} "&laquo; back to feed"]
+   (render-post (:post ctx))])
