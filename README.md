@@ -2,20 +2,13 @@
 A lousy message board.
 
 ## Running
-You'll want to start off by running migrations. This can be done by opening a
-repl (with `lein repl`) and running the following:
+You'll want to start off by running migrations using `lein migrate`. Once the
+migrations have been applied you can start the web server with:
 
-    (require '[ragtime.repl :as repl])
-    (require '[lousyboard.db :refer [migration-config])
-
-    (repl/migrate migration-config)
-
-Once the migrations have been applied you can start the web server with:
-
-    lein ring server-headless
+    lein start
 
 You will also want to compile/watch sass files, otherwise things will look 
 pretty ugly:
 
-    sass --watch resources/sass/main.sass:resources/public/dist/application.css
+    lein watch-sass
 

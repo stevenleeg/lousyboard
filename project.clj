@@ -10,7 +10,12 @@
                  [ragtime "0.6.0"]
                  [clj-time "0.12.0"]
                  [hiccup "1.0.5"]]
-  :plugins [[lein-ring "0.9.7"]]
+  :plugins [[lein-ring "0.9.7"]
+            [lein-shell "0.5.0"]
+            [lein-exec "0.3.6"]]
+  :aliases {"watch-sass" ["shell" "sass" "--watch" "resources/sass/main.sass:resources/public/dist/application.css"]
+            "migrate" ["exec" "-ep" "(use 'ragtime.repl) (use 'lousyboard.db) (migrate migration-config)"]
+            "start" ["ring" "server-headless"]}
   :ring {:handler lousyboard.handler/app
          :nrepl {:start? true
                  :port 9998}}
