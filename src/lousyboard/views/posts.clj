@@ -16,6 +16,10 @@
      (str "#" (:id post))]]
    [:div {:class "post-content"} (:content post)]])
 
+(def noposts
+  [:div {:class "noposts"}
+   "No posts found"])
+
 (defview index layout
   [ctx]
   [:div
@@ -24,7 +28,9 @@
      (anti-forgery-field)
      (text-field {:placeholder "just say it, already"
                   :class "post-input"} :content)]]
-   (map render-post (:posts ctx))])
+   (if (= 0 (count (:posts ctx)))
+     noposts
+     (map render-post (:posts ctx)))])
 
 (defview show layout
   [ctx]
