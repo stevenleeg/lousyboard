@@ -5,7 +5,7 @@
             [ring.util.anti-forgery :refer [anti-forgery-field]]
             [clj-time.coerce :as c]
             [lousyboard.views.shared :refer [layout]]
-            [lousyboard.utils :refer [defview fuzzy-time]]))
+            [lousyboard.utils :refer [defview fuzzy-time parse-post]]))
 
 (defn render-post [post]
   [:div {:class "post"} 
@@ -16,7 +16,7 @@
      [:button {:data-post-id (:id post)
                :class "post-id"}
       (str "#" (:id post))]]]
-   [:div {:class "post-content"} (:content post)]])
+   [:div {:class "post-content"} (parse-post (:content post))]])
 
 (def noposts
   [:div {:class "noposts"}
