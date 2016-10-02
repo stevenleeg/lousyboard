@@ -7,6 +7,7 @@
   [ctx content]
   (html [:head
          [:title "lousyboard"]
-         (include-css "/dist/application.css")]
+         (include-css "/dist/application.css")
+         (include-js "/app.js")]
         [:body
          [:div {:class "container"} content]]))

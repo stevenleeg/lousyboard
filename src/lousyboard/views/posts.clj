@@ -13,21 +13,27 @@
     (link-to {:class "left"} (str "/posts/" (:id post))
      (fuzzy-time (c/from-sql-time (:created_at post))))
     [:div {:class "right"} 
-     (str "#" (:id post))]]
+     [:button {:data-post-id (:id post)
+               :class "post-id"}
+      (str "#" (:id post))]]]
    [:div {:class "post-content"} (:content post)]])
 
 (def noposts
   [:div {:class "noposts"}
    "No posts found"])
 
+(defn render-post-input []
+  [:div {:class "post-box"}
+   [:form {:method "POST" :action "/posts/new"}
+    (anti-forgery-field)
+    (text-field {:placeholder "just say it, already"
+                 :class "post-input"
+                 :id "post-input"} :content)]])
+
 (defview index layout
   [ctx]
   [:div
-   [:div {:class "post-box"}
-    [:form {:method "POST" :action "/posts/new"}
-     (anti-forgery-field)
-     (text-field {:placeholder "just say it, already"
-                  :class "post-input"} :content)]]
+   (render-post-input)
    (if (= 0 (count (:posts ctx)))
      noposts
      (map render-post (:posts ctx)))])
