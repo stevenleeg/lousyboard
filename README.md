@@ -14,3 +14,8 @@ Once the migrations have been applied you can start the web server with:
 
     lein ring server-headless
 
+You will also want to compile/watch sass files, otherwise things will look 
+pretty ugly:
+
+    sass --watch resources/sass/main.sass:resources/public/dist/application.css
+
