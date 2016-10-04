@@ -22,8 +22,8 @@
 (defn parse-post
   [text]
   (-> text
-      (clojure.string/replace #"\@([0-9]*)" "<a href='/posts/$1'>@$1</a>")
-      (clojure.string/escape {\< "&lt;", \> "&gt;", \& "&amp;"})))
+      (clojure.string/escape {\< "&lt;", \> "&gt;", \& "&amp;"})
+      (clojure.string/replace #"\@([0-9]*)" "<a href='/posts/$1'>@$1</a>")))
 
 (defmacro defview
   "A shorthand for defining views that will be placed within a layout"
