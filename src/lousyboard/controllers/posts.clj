@@ -7,8 +7,9 @@
 (def items-per-page 15)
 
 (defn index [req]
-  (let [; Fetch the current page
-        page-str (get-in req [:params :page])
+  (let [; TODO: Is there a better way of parsing user input?
+        page-input (get-in req [:params :page])
+        page-str (if (re-matches (re-pattern "\\d+") page-input) page-input "1")
         current-page  (-> page-str
                           (if page-str "0")
                           (Integer/parseInt)
