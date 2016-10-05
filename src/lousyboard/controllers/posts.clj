@@ -8,10 +8,9 @@
 
 (defn index [req]
   (let [; TODO: Is there a better way of parsing user input?
-        page-input (get-in req [:params :page])
+        page-input (or (get-in req [:params :page]) "1")
         page-str (if (re-matches (re-pattern "\\d+") page-input) page-input "1")
         current-page  (-> page-str
-                          (if page-str "0")
                           (Integer/parseInt)
                           (max 1)) 
 
