@@ -53,4 +53,4 @@
                                  (korma/aggregate (count :*) :count)))
         total (:count (first result))
         cursor (* (- page-number 1) items-per-page)]
-    (< 0 (- total cursor))))
+    (< items-per-page (- total cursor))))
