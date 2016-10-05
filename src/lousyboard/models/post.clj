@@ -1,5 +1,5 @@
 (ns lousyboard.models.post
-  (:require [korma.core :refer :all]
+  (:require [korma.core :as korma]
             [clj-time.core :refer [now]]
             [clj-time.coerce :refer [to-sql-time]]))
 
@@ -9,7 +9,7 @@
 ;  - updated_at  timestamp
 ;  - content     text
 
-(defentity posts)
+(korma/defentity posts)
 
 ;
 ; Post Creation
@@ -29,10 +29,28 @@
 (defn save-post
   "Saves a post in the database"
   [post]
-  (insert posts (values post)))
+  (korma/insert posts (korma/values post)))
 
 ;
 ; Post querying
 ;
-(def base-posts (-> (select* "posts")
-                    (order :id :DESC)))
+(def base-posts (-> (korma/select* :posts)
+                    (korma/order :id :DESC)))
+
+(defn paginate-posts
+  "Accepts a base query, page number, a number of items per page, and returns a
+  query that has been limit/offseted"
+  [query page-number items-per-page]
+  (-> query
+      (korma/offset (* items-per-page (- page-number 1)))
+      (korma/limit items-per-page)))
+
+(defn has-next-page
+  "Returns a boolean based on whether or not the current query has a next page
+  given the current page and the number of items per page"
+  [page-number items-per-page]
+  (let [result (korma/select (-> (korma/select* "posts")
+                                 (korma/aggregate (count :*) :count)))
+        total (:count (first result))
+        cursor (* (- page-number 1) items-per-page)]
+    (< 0 (- total cursor))))

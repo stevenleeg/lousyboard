@@ -4,11 +4,28 @@
             [lousyboard.views.posts :as views]
             [lousyboard.models.post :refer :all]))
 
+(def items-per-page 15)
+
 (defn index [req]
-  (let [posts (select base-posts)]
-    (if (= 0 (count base-posts))
-      "Nothing here"
-      (views/index {:posts posts}))))
+  (let [; Fetch the current page
+        page-str (get-in req [:params :page])
+        current-page  (-> page-str
+                          (if page-str "0")
+                          (Integer/parseInt)
+                          (max 1)) 
+
+        ; Determine if we have next/prev pages
+        next-page (has-next-page current-page items-per-page)
+        prev-page (not (= current-page 1))
+
+        ; Fetch the posts
+        query-posts (paginate-posts base-posts current-page items-per-page)
+        posts (select query-posts)]
+
+    (views/index {:posts posts
+                  :current-page current-page
+                  :has-next-page next-page
+                  :has-prev-page prev-page})))
 
 (defn show [{params :params :as req}]
   (let [post (-> base-posts 
