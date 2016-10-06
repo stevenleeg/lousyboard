@@ -54,3 +54,16 @@
         total (:count (first result))
         cursor (* (- page-number 1) items-per-page)]
     (< items-per-page (- total cursor))))
+
+;
+; Manipulating existing posts
+;
+(defn parse-post
+  [text]
+  (-> text
+      (clojure.string/escape {\< "&lt;", \> "&gt;", \& "&amp;"})
+      (clojure.string/replace 
+        #"\[(.*)\]\((http(s)?\:\/\/.*)\)" 
+        "<a target='_blank' href='$2'>$1</a>")
+      (clojure.string/replace #"\@([0-9]*)" "<a href='/posts/$1'>@$1</a>")))
+

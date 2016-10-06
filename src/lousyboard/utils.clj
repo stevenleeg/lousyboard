@@ -19,12 +19,6 @@
       (< days 6) (str days " days ago")
       :else (f/parse (f/formatters :basic-date-time) timestamp))))
 
-(defn parse-post
-  [text]
-  (-> text
-      (clojure.string/escape {\< "&lt;", \> "&gt;", \& "&amp;"})
-      (clojure.string/replace #"\@([0-9]*)" "<a href='/posts/$1'>@$1</a>")))
-
 (defmacro defview
   "A shorthand for defining views that will be placed within a layout"
   [view-name layout args body]

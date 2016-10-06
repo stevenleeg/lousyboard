@@ -5,6 +5,7 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [compojure "1.5.1"]
                  [ring/ring-defaults "0.2.1"]
+                 [ring/ring-mock "0.3.0"]
                  [korma "0.4.3"]
                  [org.postgresql/postgresql "9.4.1211"]
                  [ragtime "0.6.0"]
